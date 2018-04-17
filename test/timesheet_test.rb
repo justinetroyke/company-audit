@@ -1,7 +1,7 @@
 require './test/test_helper'
 require './lib/timesheet'
 
-class ProjectTest < Minitest::Test
+class TimesheetTest < Minitest::Test
   attr_reader :timesheet
 
   def setup
