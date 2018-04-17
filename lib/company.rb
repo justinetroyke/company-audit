@@ -1,13 +1,11 @@
-require_relative 'file_loader'
-require_relative 'parser'
+require_relative 'employee'
 
 class Company
-  include FileLoader
-  include Parser
 
   attr_reader :employees,
               :projects,
-              :timesheets
+              :timesheets,
+              :success
 
   def initialize
     @employees = []
@@ -15,8 +13,14 @@ class Company
     @timesheets = []
   end
 
-  def load_employees(filename)
-    load_file(filename)
-    binding.pry
+  def load_employees(file_path)
+    CSV.foreach(file_path) do |row|
+      if row.length != 5
+        @success_status = {success: true, error: nil}
+      else
+        @success_status = {success: false, error: 'bad data'}
+      end
+       @ employees << Employee.new(row[0], row[1],
+   end
   end
 end
